@@ -1,0 +1,21 @@
+{
+    "name": "googlehome",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "scripts": {
+        "start": "npm run server",
+        "server": "nodemon dist/action.js",
+        "ngrok": "ngrok http 8080",
+        "build": "babel lib -d dist",
+        "build:watch": "npm run build -- -w",
+        "action:simulate": "gactions --verbose simulate",
+        "action:preview": "node ./scripts/preview_action.js",
+        "action:config": "node ./scripts/update_action_config.js",
+        "action:autopreview": "npm run action:config && npm run action:preview",
+        "action:deploy": "gactions deploy --action_package action.json --project my-first-action",
+        "release": "npm run build && npm version patch && git push --tags && git push && npm publish"
+    }
+}
